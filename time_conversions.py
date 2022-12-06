@@ -2,12 +2,9 @@
 import sys
 import os
 import requests
-import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from sgp4.api import Satrec, days2mdhms, jday
-from math import *
 
+# Functions
 def time_tables():
 
     files = os.listdir(os.curdir)
@@ -56,6 +53,7 @@ def time_tables():
 
 def time(argv):
 
+    # Read TLE data
     TLE_FILE = argv[2]
     data_file = open(TLE_FILE, "r")
     TLE = data_file.read()
@@ -63,14 +61,8 @@ def time(argv):
     L1 = TLE.splitlines()[1]
     L2 = TLE.splitlines()[2]
     satellite = Satrec.twoline2rv(L1, L2)
-    month, day, hour, minute, second = days2mdhms(satellite.epochyr, satellite.epochdays)
-    if satellite.epochyr < 57:
-        year = 2000 + satellite.epochyr
-    else:
-        year = 1900 + satellite.epochyr
-    jd_TLE, fr_TLE = jday(year, month, day, hour, minute, second)
-    mjd_TLE = jd_TLE + fr_TLE - 2400000.5
 
+    # Read orbit data
     ORBIT_FILE = argv[3]
     orbit_table = np.loadtxt(ORBIT_FILE)
     orbit_time_vector = orbit_table[:,0]
@@ -81,7 +73,16 @@ def time(argv):
     UT1_UTC = UT1_UTC_table[:,1]
     mjd = UT1_UTC_table[:,0]
 
+    # UTC to GPS
+    TABLE_FILE = argv[5]
+    GPS_table = np.loadtxt(TABLE_FILE)
+    jd = GPS_table[:, 0]
+    coeff1 = GPS_table[:, 1]
+    coeff2 = GPS_table[:, 2]
+    coeff3 = GPS_table[:, 3]
+
     # ... data processing #
+
 
 if __name__ == "__main__":
 
