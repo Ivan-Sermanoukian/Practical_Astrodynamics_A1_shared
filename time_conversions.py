@@ -3,9 +3,10 @@ import sys
 import os
 import requests
 import numpy as np
+from sgp4.api import Satrec
 
 # Functions
-def time_tables():
+def time_tables(argv):
 
     files = os.listdir(os.curdir)
     UT1_UTC_exists = 0
