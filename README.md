@@ -31,3 +31,5 @@ After running the `time_tables()` function the following files are obtained:
 * leap_seconds.dat (RAW table for UTC-GPS conversions)
 * UT1_UTC_MJD_time.dat (Modified table in matrix shape with MJD and the UT1-UTC conversions)
 * leap_seconds_MJD_time.dat (Modified table in matrix shape with JD and the 3 time error coefficient conversions)
+
+The `time()` function has been provided as an initial setup to post-processed the read data.
