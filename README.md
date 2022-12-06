@@ -16,8 +16,13 @@ Regarding leap seconds the following reference is used: [TAI-UTC](https://maia.u
 
 In order to use each function, go to the CLI and use the following commands:
 
-* python main.py time_tables
-* python main.py time TLE.dat TLEorbit.dat UT1_UTC_MJD_time.dat leap_seconds_MJD_time.dat
+* python time_conversions.py time_tables
+* python time_conversions.py time TLE.dat TLEorbit.dat UT1_UTC_MJD_time.dat leap_seconds_MJD_time.dat
+
+## Working example
+
+![Example CLI](Example_CLI.png)
+
 
 ## Data type
 
